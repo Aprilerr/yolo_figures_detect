@@ -15,7 +15,7 @@ You can take advantage of this repository in two ways:
 
 We recommend executing the process using the terminal.
 
-First, download trained model using this link(yolov5x_publaynet_figure_800)[https://drive.google.com/file/d/1BnCZP4hwenl7DHqQc6R7wrtVwt8W_CLV/view], and put it into repo root path(`./yolo_figures_detect`)
+First, download trained model using this link [yolov5x_publaynet_figure_800](https://drive.google.com/file/d/1BnCZP4hwenl7DHqQc6R7wrtVwt8W_CLV/view), and put it into repo root path(`./yolo_figures_detect`)
 
 Prepare Python environment , python version at least 3.9
 
