@@ -15,7 +15,7 @@ from copy import copy
 from pathlib import Path
 from urllib.parse import urlparse
 
-import cv2
+import cv2,time
 import numpy as np
 import pandas as pd
 import requests
@@ -505,6 +505,7 @@ class DetectMultiBackend(nn.Module):
 
     def forward(self, im, augment=False, visualize=False):
         # YOLOv5 MultiBackend inference
+        # start_time=time.time()
         b, ch, h, w = im.shape  # batch, channel, height, width
         if self.fp16 and im.dtype != torch.float16:
             im = im.half()  # to FP16
@@ -522,6 +523,7 @@ class DetectMultiBackend(nn.Module):
         elif self.onnx:  # ONNX Runtime
             im = im.cpu().numpy()  # torch to numpy
             y = self.session.run(self.output_names, {self.session.get_inputs()[0].name: im})
+            # print("IM",time.time()-start_time)
         elif self.xml:  # OpenVINO
             im = im.cpu().numpy()  # FP32
             y = list(self.executable_network([im]).values())
@@ -579,6 +581,7 @@ class DetectMultiBackend(nn.Module):
                     y.append(x)
             y = [x if isinstance(x, np.ndarray) else x.numpy() for x in y]
             y[0][..., :4] *= [w, h, w, h]  # xywh normalized to pixels
+
 
         if isinstance(y, (list, tuple)):
             return self.from_numpy(y[0]) if len(y) == 1 else [self.from_numpy(x) for x in y]
