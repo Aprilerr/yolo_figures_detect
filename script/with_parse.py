@@ -3,7 +3,7 @@ import json
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 # 指定要上传的文件路径
-file_path = '/home/wsh/yolov5-master/test_file/Public spending and green economic growth in BRI region Mediating role.pdf'
+file_path = '/home/wsh/yolov5-master/test_file/New Dir Adult Contin Educ - 2023 - Wright - What is critical media literacy in an age of disinformation.pdf'
 
 # 发送 POST 请求，并上传文件
 response = requests.post('http://172.104.109.175:9080/', files={'file': open(file_path, 'rb')})

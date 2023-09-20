@@ -1,1 +1,1 @@
-echo $(curl http://localhost:8000/extract/without_parse -X POST -s -F "file=@../test_file/Public spending and green economic growth in BRI region Mediating role.pdf")
+echo $(curl http://localhost:9080/extract/without_parse -X POST -s -F "file=@../test_file/Public spending and green economic growth in BRI region Mediating role.pdf")

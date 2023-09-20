@@ -4,7 +4,7 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 import os
 
 # 指定要上传的文件路径
-file_path = '/home/wsh/yolov5-master/test_file/Public spending and green economic growth in BRI region Mediating role.pdf'
+file_path = '/home/wsh/yolov5-master/test_file/Global Networks - 2002 - Wimmer - Methodological nationalism and beyond  nation state building  migration and the social.pdf'
 
 with open(file_path, "rb") as file:
     content = file.read()

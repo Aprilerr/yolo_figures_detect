@@ -53,6 +53,7 @@ def extract_figure(paper_name: str):
                 w, h = pdf_page.rect.width, pdf_page.rect.height
                 pdf_bbox = x1 * w, y1 * h, x2 * w, y2 * h
                 caption = find_caption(fig_blocks, pdf_bbox)
+                print(f">>>>>>>>>>caption:{caption}")
                 croped_image = image.crop(image_bbox)
                 if items[0] == "0":
                     k = pytesseract.image_to_osd(croped_image, output_type='dict', config='osd --psm 0')
@@ -67,6 +68,10 @@ def extract_figure(paper_name: str):
                 if caption is not None:
                     with open(str(out_image_file)[:-3] + "txt", "w", encoding="utf-8") as f:
                         f.write(caption.text.replace("\n", ""))
+                    count += 1
+                else:
+                    with open(str(out_image_file)[:-3] + "txt", "w", encoding="utf-8") as f:
+                        f.write("\n\n")
                     count += 1
 
 

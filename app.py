@@ -18,15 +18,6 @@ import detect,detect1
 from models.common import DetectMultiBackend
 from utils.general import check_img_size
 
-imgsz=(640, 640)
-model = DetectMultiBackend("yolov5x_publaynet_figure_800.pt")
-stride, names, pt = model.stride, model.names, model.pt
-imgsz = check_img_size(imgsz, s=stride)  # check image size
-yolo5={"model":model,
-       "stride":stride,
-       "names":names,
-       "pt":pt,
-       "imgsz":imgsz}
 ######################################
 
 
@@ -44,6 +35,15 @@ app = FastAPI()
 # Request this api, you will have risk with parse error
 @app.post("/extract/without_parse")
 async def extract_figure_without_parse(file: UploadFile = File(...)):
+    imgsz=(640, 640)
+    model = DetectMultiBackend("yolov5x_publaynet_figure_800.pt")
+    stride, names, pt = model.stride, model.names, model.pt
+    imgsz = check_img_size(imgsz, s=stride)  # check image size
+    yolo5={"model":model,
+        "stride":stride,
+        "names":names,
+        "pt":pt,
+        "imgsz":imgsz}
     contents = await file.read()
     file_name = os.path.basename(file.filename)
     with open(f"/tmp/{file_name}", "wb") as f:
@@ -65,6 +65,15 @@ async def extract_figure_without_parse(file: UploadFile = File(...)):
 # and transmit the result into this function params
 @app.post("/extract/with_parse")
 async def extract_figure_with_parse(file_parse:str = Form(...) ,file: UploadFile=File(...)):
+    imgsz=(640, 640)
+    model = DetectMultiBackend("yolov5x_publaynet_figure_800.pt")
+    stride, names, pt = model.stride, model.names, model.pt
+    imgsz = check_img_size(imgsz, s=stride)  # check image size
+    yolo5={"model":model,
+        "stride":stride,
+        "names":names,
+        "pt":pt,
+        "imgsz":imgsz}
     contents = await file.read()
     file_name = os.path.basename(file.filename)
     with open(f"/tmp/{file_name}", "wb") as f:
